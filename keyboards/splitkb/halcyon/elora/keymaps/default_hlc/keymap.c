@@ -207,3 +207,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     ),
 //
 };
+
+const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
+const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
+const uint16_t PROGMEM save_combo[] = {KC_S, KC_D, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(copy_combo, G(KC_C)),
+    COMBO(paste_combo, G(KC_V)),
+    COMBO(cut_combo, G(KC_X)),
+    COMBO(save_combo, G(KC_S)),
+};
