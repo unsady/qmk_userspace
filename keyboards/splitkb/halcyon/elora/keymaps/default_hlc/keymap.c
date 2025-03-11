@@ -220,5 +220,5 @@ combo_t key_combos[] = {
     COMBO(cut_combo, G(KC_X)),
     COMBO(save_combo, G(KC_S)),
     COMBO(undo_combo, G(KC_Z)),
-    COMBO(redo_combo, G(KC_Y)),
+    COMBO(redo_combo, G(S(KC_Y))),
 };
