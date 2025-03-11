@@ -15,7 +15,7 @@ enum layers {
 #define QWERTY DF(_QWERTY)
 
 #define SYM MO(_SYM)
-#define NAV MO(_NAV)
+#define NAV TO(_NAV)
 #define FKEYS MO(_FUNCTION)
 #define ADJUST MO(_ADJUST)
 
