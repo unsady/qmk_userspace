@@ -13,22 +13,24 @@ enum layers {
 
 // Aliases for readability
 #define QWERTY TO(_QWERTY)
-#define SYM OSL(_SYM)
-#define NAV TO(_NAV)
+#define SYM MO(_SYM)
+#define NAV MO(_NAV)
 #define FKEYS OSL(_FUNCTION)
 #define ADJUST MO(_ADJUST)
 
-#define GUI_ESC MT(MOD_LGUI, KC_ESC)
+#define GUI_TAB MT(MOD_LGUI, KC_ESC)
 #define GUI_QUOT MT(MOD_RGUI, KC_QUOTE)
 #define GUI_MINS MT(MOD_RGUI, KC_MINUS)
-#define ALT_ENT MT(MOD_LALT, KC_ENT)
+#define SYM_ENT MT(SYM, KC_ENT)
+#define NAV_SPC MT(NAV, KC_SPC)
+#define CW_TOGG MT(MOD_LCTL, KC_CAPS)
 #define RSFT_EQL MT(MOD_RSFT, KC_EQL)
 #define ONE_SFT OSM(MOD_LSFT)
 
 #define ONESHOT_TAP_TOGGLE 5 /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000 /* Time (in ms) before the one shot key is released */
 
-// Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
+// Note: LAlt/Enter (SYM_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
 
@@ -59,10 +61,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT_elora_hlc(
      KC_GRV  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_MINS,
-     KC_TAB  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
-     GUI_ESC , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
-     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH, RSFT_EQL,
-                                ADJUST , KC_LCTL, ALT_ENT, KC_SPC , NAV   ,     SYM    , KC_SPC ,KC_RALT, KC_RCTL, KC_APP,
+     KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
+     GUI_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
+     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,RSFT_EQL,
+                                ADJUST , KC_ESC , NAV_SPC , KC_TAB,TO(_NAV),    OSM(_SYM),SYM_ENT, KC_BSPC ,KC_RALT, KC_RCTL,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -170,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------'                                              `-----------------------------------'
  */
     [_ADJUST] = LAYOUT_elora_hlc(
-      _______, _______, _______, _______, _______, _______,                                    _______, _______, _______, _______,  _______, _______,
+      _______, _______, _______, _______, _______, _______,                                    _______, _______, _______, _______,  _______, QK_RBT,
       _______, _______, _______, _______ , _______, _______,                                    _______, _______, _______, _______,  _______, _______,
       _______, _______, _______, _______ , _______, _______,                                    RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI,  RGB_MOD, _______,
       _______, _______, _______, _______, _______, _______,_______, _______, _______, _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, _______,
@@ -208,12 +210,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
 };
 
+enum custom_keycodes {
+    QMKBEST = SAFE_RANGE,
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case QMKBEST:
+        if (record->event.pressed) {
+            // when keycode QMKBEST is pressed
+            SEND_STRING("QMK is the best thing ever!");
+        } else {
+            // when keycode QMKBEST is released
+        }
+        break;
+    }
+    return true;
+};
+
 const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
 const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM redo_combo[] = {KC_Z, KC_A, COMBO_END};
 const uint16_t PROGMEM save_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM nav_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM sym_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM arr_combo[] = {KC_EQL, KC_PLUS, COMBO_END};
+const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
+
 combo_t key_combos[] = {
     COMBO(copy_combo, G(KC_C)),
     COMBO(paste_combo, G(KC_V)),
@@ -221,4 +246,8 @@ combo_t key_combos[] = {
     COMBO(save_combo, G(KC_S)),
     COMBO(undo_combo, G(KC_Z)),
     COMBO(redo_combo, G(S(KC_Z))),
+    COMBO(nav_combo, TO(_NAV)),
+    COMBO(sym_combo, OSM(_SYM)),
+    COMBO(arr_combo, QMKBEST),
+    COMBO(ent_combo, KC_ENT),
 };
