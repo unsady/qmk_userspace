@@ -8,14 +8,6 @@
                 "HLC_TFT_DISPLAY": "1",
                 "TARGET": "splitkb_halcyon_elora_rev2_default_hlc_display"
             }
-        ],
-        [
-            "splitkb/halcyon/elora/rev2",
-            "default_hlc",
-            {
-                "HLC_NONE": "1",
-                "TARGET": "splitkb_halcyon_elora_rev2_default_hlc"
-            }
         ]
     ]
 }
