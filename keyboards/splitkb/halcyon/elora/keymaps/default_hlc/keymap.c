@@ -259,6 +259,5 @@ combo_t key_combos[] = {
     COMBO(sym_combo, OSL(_SYM)),
     COMBO(arr_combo, MY_ARR),
     COMBO(tmp_combo, MY_TMP),
-    COMBO(tmp_combo, KC_TAB),
     COMBO(ent_combo, KC_ENT),
 };
