@@ -18,11 +18,14 @@ enum layers {
 #define FKEYS OSL(_FUNCTION)
 #define ADJUST MO(_ADJUST)
 
-#define GUI_TAB MT(MOD_LGUI, KC_ESC)
+#define GUI_TAB MT(MOD_LGUI, KC_TAB)
 #define GUI_QUOT MT(MOD_RGUI, KC_QUOTE)
 #define GUI_MINS MT(MOD_RGUI, KC_MINUS)
-#define SYM_ENT MT(SYM, KC_ENT)
-#define NAV_SPC MT(NAV, KC_SPC)
+#define ALT_ENT MT(MOD_LALT, KC_ENT)
+#define ALT_TAB MT(MOD_LALT, KC_TAB)
+#define NAV_SPC LT(_NAV, KC_SPC)
+#define SYM_SPC LT(_SYM, KC_SPC)
+
 #define CW_TOGG MT(MOD_LCTL, KC_CAPS)
 #define RSFT_EQL MT(MOD_RSFT, KC_EQL)
 #define ONE_SFT OSM(MOD_LSFT)
@@ -31,7 +34,7 @@ enum layers {
 #define ONESHOT_TAP_TOGGLE 5 /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000 /* Time (in ms) before the one shot key is released */
 
-// Note: LAlt/Enter (SYM_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
+// Note: LAlt/Enter (ALT_ENT) is not the same thing as the keyboard shortcut Alt+Enter.
 // The notation `mod/tap` denotes a key that activates the modifier `mod` when held down, and
 // produces the key `tap` when tapped (i.e. pressed and released).
 
@@ -65,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      QK_GESC  , KC_Q ,  KC_W  ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      GUI_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
      ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
-                                ADJUST , KC_ESC , NAV_SPC , KC_TAB,TO(_NAV),    OSL(_SYM),SYM_ENT, KC_BSPC ,KC_RALT, KC_RCTL,
+                                 ADJUST, KC_LCTL, ALT_ENT, NAV_SPC, TO(_NAV),   OSL(_SYM),SYM_SPC, KC_RALT, KC_RCTL,FKEYS
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -212,17 +215,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 enum custom_keycodes {
-    QMKBEST = SAFE_RANGE,
+    MY_ARR = SAFE_RANGE,
+    MY_TMP,
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case QMKBEST:
+    case MY_ARR:
         if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("QMK is the best thing ever!");
-        } else {
-            // when keycode QMKBEST is released
+            SEND_STRING("=>");
+        }
+        break;
+    case MY_TMP:
+        if (record->event.pressed) {
+            SEND_STRING("${");
         }
         break;
     }
@@ -238,6 +244,7 @@ const uint16_t PROGMEM save_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM nav_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM sym_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_EQL, KC_PLUS, COMBO_END};
+const uint16_t PROGMEM tmp_combo[] = {KC_DLR, KC_PERC, COMBO_END};
 const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
@@ -249,6 +256,7 @@ combo_t key_combos[] = {
     COMBO(redo_combo, G(S(KC_Z))),
     COMBO(nav_combo, TO(_NAV)),
     COMBO(sym_combo, OSL(_SYM)),
-    COMBO(arr_combo, QMKBEST),
+    COMBO(arr_combo, MY_ARR),
+    COMBO(tmp_combo, KC_TAB),
     COMBO(ent_combo, KC_ENT),
 };
