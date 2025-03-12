@@ -26,6 +26,7 @@ enum layers {
 #define CW_TOGG MT(MOD_LCTL, KC_CAPS)
 #define RSFT_EQL MT(MOD_RSFT, KC_EQL)
 #define ONE_SFT OSM(MOD_LSFT)
+#define ONE_RSFT OSM(MOD_RSFT)
 
 #define ONESHOT_TAP_TOGGLE 5 /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 5000 /* Time (in ms) before the one shot key is released */
@@ -60,11 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [_QWERTY] = LAYOUT_elora_hlc(
-     KC_GRV  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_MINS,
-     KC_ESC  , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
+     KC_EQL  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_MINS,
+     QK_GESC  , KC_Q ,  KC_W  ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      GUI_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
-     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,RSFT_EQL,
-                                ADJUST , KC_ESC , NAV_SPC , KC_TAB,TO(_NAV),    OSM(_SYM),SYM_ENT, KC_BSPC ,KC_RALT, KC_RCTL,
+     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
+                                ADJUST , KC_ESC , NAV_SPC , KC_TAB,TO(_NAV),    OSL(_SYM),SYM_ENT, KC_BSPC ,KC_RALT, KC_RCTL,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -247,7 +248,7 @@ combo_t key_combos[] = {
     COMBO(undo_combo, G(KC_Z)),
     COMBO(redo_combo, G(S(KC_Z))),
     COMBO(nav_combo, TO(_NAV)),
-    COMBO(sym_combo, OSM(_SYM)),
+    COMBO(sym_combo, OSL(_SYM)),
     COMBO(arr_combo, QMKBEST),
     COMBO(ent_combo, KC_ENT),
 };
