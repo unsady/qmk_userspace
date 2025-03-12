@@ -53,24 +53,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |  Esc   |   1  |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |  Esc   |
+ * |   =    |   1  |   2  |   3  |   4  |   5  |                              |   6  |   7  |   8  |   9  |   0  |   -    |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |  Tab   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  Bksp  |
+ * | ESC/GUI|   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  Bksp  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |GUI/Esc |   A  |   S  |   D  |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |GUI/' "|
+ * |GUI/Tab |   A  |   S  |GUI/D |SFT/F |   G  |                              |   H  |SFT/J |GUI/K |   L  | ;  : |GUI/' "|
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * | LShift |   Z  |   X  |   C  |   V  |   B  | [ {  |CapsLk|  |F-keys|  ] } |   N  |   M  | ,  < | . >  | /  ? | RShift |
+ * |One-SFT |   Z  |   X  |   C  |   V  |   B  | [ {  |CapsLk|  |Adjust|  ] } |   N  |   M  | ,  < | . >  | /  ? |One-RSFT|
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        |Adjust| LCTL | LAlt/| Space| Nav  |  | Sym  | Space| AltGr| RCTL | Menu |
- *                        |      |      | Enter|      |      |  |      |      |      |      |      |
+ *                        | LCTL | LALT |Nav/SP| Tab  |LANG  |  |F-keys| Enter|Sym/SP| RCTL | RALT |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  * ,-----------------------------------.                                              ,-----------------------------------.
  * | MUTE | ____ | _____ | ____ | ____ |                                              | MUTE | ____ | _____ | ____ | ____ |
  * `-----------------------------------'                                              `-----------------------------------'
  */
-
-
-
 
   [_QWERTY] = LAYOUT_elora_hlc(
      KC_EQL  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_MINS,
@@ -169,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Adjust Layer: Default layer settings, RGB
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |        |      |      |      |      |      |                              |      |      |      |      |      | RESET  |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
@@ -252,9 +249,9 @@ const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
 const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM redo_combo[] = {KC_Z, KC_A, COMBO_END};
-const uint16_t PROGMEM save_combo[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM nav_combo[] = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM sym_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM save_combo[] = {KC_S, GUI_D, COMBO_END};
+const uint16_t PROGMEM nav_combo[] = {GUI_D, SFT_F, COMBO_END};
+const uint16_t PROGMEM sym_combo[] = {SFT_J, GUI_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_EQL, KC_PLUS, COMBO_END};
 const uint16_t PROGMEM tmp_combo[] = {KC_DLR, KC_PERC, COMBO_END};
 const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
