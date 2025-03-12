@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      QK_GESC  , KC_Q ,  KC_W  ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      GUI_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
      ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
-                                 ADJUST, KC_LCTL, ALT_ENT, NAV_SPC, TO(_NAV),   OSL(_SYM),SYM_SPC, KC_RALT, KC_RCTL,FKEYS
+                                 ADJUST, KC_LCTL, ALT_ENT, NAV_SPC, TO(_NAV),   OSL(_SYM),SYM_SPC, KC_RALT, KC_RCTL,FKEYS,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -228,6 +228,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case MY_TMP:
         if (record->event.pressed) {
+            // when keycode MY_TMP is pressed
             SEND_STRING("${");
         }
         break;
@@ -257,6 +258,7 @@ combo_t key_combos[] = {
     COMBO(nav_combo, TO(_NAV)),
     COMBO(sym_combo, OSL(_SYM)),
     COMBO(arr_combo, MY_ARR),
+    COMBO(tmp_combo, MY_TMP),
     COMBO(tmp_combo, KC_TAB),
     COMBO(ent_combo, KC_ENT),
 };
