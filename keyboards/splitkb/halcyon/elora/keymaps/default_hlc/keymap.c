@@ -11,6 +11,12 @@ enum layers {
     _ADJUST,
 };
 
+enum custom_keycodes {
+    MY_ARR = SAFE_RANGE,
+    MY_TMP,
+    MY_LANG,
+};
+
 // Aliases for readability
 #define QWERTY TO(_QWERTY)
 #define SYM MO(_SYM)
@@ -67,8 +73,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_EQL  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_MINS,
      QK_GESC  , KC_Q ,  KC_W  ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_BSPC,
      GUI_TAB , KC_A ,  KC_S   ,  KC_D  ,   KC_F ,   KC_G ,                                        KC_H,   KC_J ,  KC_K ,   KC_L ,KC_SCLN,GUI_QUOT,
-     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     FKEYS  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
-                                 ADJUST, KC_LCTL, ALT_ENT, NAV_SPC, TO(_NAV),   OSL(_SYM),SYM_SPC, KC_RALT, KC_RCTL,FKEYS,
+     ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_LBRC,CW_TOGG,     ADJUST  , KC_RBRC, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
+                                 MY_LANG, KC_LCTL, ALT_ENT, NAV_SPC, TO(_NAV),   OSL(_SYM),SYM_SPC, KC_RALT, KC_RCTL,FKEYS,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -214,11 +220,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //
 };
 
-enum custom_keycodes {
-    MY_ARR = SAFE_RANGE,
-    MY_TMP,
-};
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case MY_ARR:
@@ -228,8 +229,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case MY_TMP:
         if (record->event.pressed) {
-            // when keycode MY_TMP is pressed
             SEND_STRING("${");
+        }
+        break;
+    case MY_LANG:
+        if (record->event.pressed) {
+            register_code(KC_LCTL);
+            register_code(KC_SPC);
+            unregister_code(KC_SPC);
+            unregister_code(KC_LCTL);
         }
         break;
     }
