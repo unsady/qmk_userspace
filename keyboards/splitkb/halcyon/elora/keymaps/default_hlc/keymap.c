@@ -252,13 +252,12 @@ const uint16_t PROGMEM redo_combo[] = {KC_Z, KC_A, COMBO_END};
 const uint16_t PROGMEM save_combo[] = {KC_S, GUI_D, COMBO_END};
 const uint16_t PROGMEM nav_combo[] = {GUI_D, SFT_F, COMBO_END};
 const uint16_t PROGMEM sym_combo[] = {SFT_J, GUI_K, COMBO_END};
-const uint16_t PROGMEM arr_combo[] = {KC_EQL, KC_PLUS, COMBO_END};
 const uint16_t PROGMEM tmp_combo[] = {KC_DLR, KC_PERC, COMBO_END};
 const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM bkspc_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {GUI_D, GUI_K, COMBO_END};
-const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
-const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM arr_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM eql_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM colon_combo[] = {KC_L, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM jl_combo[] = {SFT_J, KC_L, COMBO_END};
 const uint16_t PROGMEM sf_combo[] = {KC_S, SFT_F, COMBO_END};
@@ -278,8 +277,8 @@ combo_t key_combos[] = {
     COMBO(ent_combo, KC_ENT),
     COMBO(bkspc_combo, KC_BSPC),
     COMBO(lang_combo, MY_LANG),
-    COMBO(ui_combo, MY_ARR),
-    COMBO(uo_combo, KC_EQL),
+    COMBO(arr_combo, MY_ARR),
+    COMBO(eql_combo, KC_EQL),
     COMBO(colon_combo, KC_COLN),
     COMBO(jl_combo, KC_QUOT),
     COMBO(sf_combo, KC_DQT),
