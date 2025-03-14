@@ -7,6 +7,7 @@ enum layers {
     _QWERTY = 0,
     _NAV,
     _SYM,
+    _SRT,
     _FUNCTION,
     _ADJUST,
 };
@@ -31,6 +32,8 @@ enum custom_keycodes {
 #define ALT_TAB MT(MOD_LALT, KC_TAB)
 #define NAV_SPC LT(_NAV, KC_SPC)
 #define SYM_SPC LT(_SYM, KC_SPC)
+#define SRT_S LT(_SRT, KC_S)
+#define SRT_L LT(_SRT, KC_L)
 #define GUI_D MT(MOD_LGUI, KC_D)
 #define GUI_K MT(MOD_LGUI, KC_K)
 #define SFT_F MT(MOD_LSFT, KC_F)
@@ -72,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_elora_hlc(
      KC_EQL  , KC_1 ,  KC_2   ,  KC_3  ,   KC_4 ,   KC_5 ,                                        KC_6 ,  KC_7 ,  KC_8 ,   KC_9 ,  KC_0 , KC_RBRC,
      QK_GESC , KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_LBRC,
-     GUI_TAB , KC_A ,  KC_S   , GUI_D  ,  SFT_F ,   KC_G ,                                        KC_H,  SFT_J , GUI_K ,   KC_L ,KC_SCLN,GUI_QUOT,
+     GUI_TAB , KC_A ,  SRT_S  , GUI_D  ,  SFT_F ,   KC_G ,                                        KC_H,  SFT_J , GUI_K ,   SRT_L ,KC_SCLN,GUI_QUOT,
      ONE_SFT , KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_BSPC,CW_TOGG,     ADJUST  , KC_MINS, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
                                  KC_LCTL,KC_LALT,  NAV_SPC, NAV_SPC, MY_LANG,      FKEYS,  SYM_SPC, SYM_SPC, KC_RALT,KC_RCTL,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
@@ -190,6 +193,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______, _______,  _______, _______, _______,                                                       _______, _______, _______, _______, _______
     ),
 
+/*
+ * Layer template
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        `----------------------------------'  `----------------------------------'
+ * ,-----------------------------------.                                              ,-----------------------------------.
+ * |      |      |       |      |      |                                              |      |      |       |      |      |
+ * `-----------------------------------'                                              `-----------------------------------'
+ */
+    [_SRT] = LAYOUT_elora_hlc(
+      _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, G(KC_R), _______,                                     MEH(KC_Y),MEH(KC_U),MEH(KC_I),MEH(KC_O),MEH(KC_P),_______,
+      _______, _______, _______, G(KC_D), G(KC_F), _______,                                     MEH(KC_J),MEH(KC_J),MEH(KC_K),MEH(KC_L),MEH(KC_QUOT),_______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, MEH(KC_N),MEH(KC_M),MEH(KC_COMM),MEH(KC_DOT),MEH(KC_SLSH),_______,
+                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+     _______, _______,  _______, _______, _______,                                                       _______, _______, _______, _______, _______
+    ),
+
 // /*
 //  * Layer template
 //  *
@@ -249,7 +280,7 @@ const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
 const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
 const uint16_t PROGMEM redo_combo[] = {KC_Z, KC_A, COMBO_END};
-const uint16_t PROGMEM save_combo[] = {KC_S, GUI_D, COMBO_END};
+const uint16_t PROGMEM save_combo[] = {SRT_S, GUI_D, COMBO_END};
 const uint16_t PROGMEM nav_combo[] = {GUI_D, SFT_F, COMBO_END};
 const uint16_t PROGMEM sym_combo[] = {SFT_J, GUI_K, COMBO_END};
 const uint16_t PROGMEM tmp_combo[] = {KC_DLR, KC_PERC, COMBO_END};
@@ -258,9 +289,9 @@ const uint16_t PROGMEM bkspc_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {GUI_D, GUI_K, COMBO_END};
 const uint16_t PROGMEM eql_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
-const uint16_t PROGMEM colon_combo[] = {KC_L, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM jl_combo[] = {SFT_J, KC_L, COMBO_END};
-const uint16_t PROGMEM sf_combo[] = {KC_S, SFT_F, COMBO_END};
+const uint16_t PROGMEM colon_combo[] = {SRT_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM jl_combo[] = {SFT_J, SRT_L, COMBO_END};
+const uint16_t PROGMEM sf_combo[] = {SRT_S, SFT_F, COMBO_END};
 
 
 combo_t key_combos[] = {
