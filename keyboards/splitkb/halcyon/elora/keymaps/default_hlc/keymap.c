@@ -182,7 +182,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------'                                              `-----------------------------------'
  */
     [_ADJUST] = LAYOUT_elora_hlc(
-      _______, _______, _______, _______, _______, _______,                                    _______, _______, _______, _______,  _______, QK_RBT,
+      _______, _______, _______, _______, _______, _______,                                    _______, _______, _______, _______,   QK_RBT, QK_BOOT,
       _______, _______, _______, _______ , _______, _______,                                    _______, _______, _______, _______,  _______, _______,
       _______, _______, _______, _______ , _______, _______,                                    RGB_TOG, RGB_SAI, RGB_HUI, RGB_VAI,  RGB_MOD, _______,
       _______, _______, _______, _______, _______, _______,_______, _______, _______, _______, _______, RGB_SAD, RGB_HUD, RGB_VAD, RGB_RMOD, _______,
@@ -257,6 +257,11 @@ const uint16_t PROGMEM tmp_combo[] = {KC_DLR, KC_PERC, COMBO_END};
 const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM bkspc_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {GUI_D, GUI_K, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM uo_combo[] = {KC_U, KC_O, COMBO_END};
+const uint16_t PROGMEM colon_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM lpar_combo[] = {SFT_J, KC_L, COMBO_END};
+const uint16_t PROGMEM rpar_combo[] = {KC_M, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(copy_combo, G(KC_C)),
@@ -272,4 +277,9 @@ combo_t key_combos[] = {
     COMBO(ent_combo, KC_ENT),
     COMBO(bkspc_combo, KC_BSPC),
     COMBO(lang_combo, MY_LANG),
+    COMBO(ui_combo, KC_EQL),
+    COMBO(uo_combo, MY_ARR),
+    COMBO(colon_combo, KC_COLN),
+    COMBO(lpar_combo, KC_LPRN),
+    COMBO(rpar_combo, KC_RPRN),
 };
