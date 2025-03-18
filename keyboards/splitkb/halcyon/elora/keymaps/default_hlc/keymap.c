@@ -283,11 +283,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
-const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
-const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
-const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
-const uint16_t PROGMEM redo_combo[] = {KC_Z, SRT_A, COMBO_END};
+// const uint16_t PROGMEM copy_combo[] = {KC_X, KC_C, COMBO_END};
+// const uint16_t PROGMEM paste_combo[] = {KC_C, KC_V, COMBO_END};
+// const uint16_t PROGMEM cut_combo[] = {KC_X, KC_V, COMBO_END};
+// const uint16_t PROGMEM undo_combo[] = {KC_Z, KC_X, COMBO_END};
+// const uint16_t PROGMEM redo_combo[] = {KC_Z, SRT_A, COMBO_END};
 const uint16_t PROGMEM save_combo[] = {SRT_S, GUI_D, COMBO_END};
 const uint16_t PROGMEM nav_combo[] = {GUI_D, SFT_F, COMBO_END};
 const uint16_t PROGMEM sym_combo[] = {SFT_J, GUI_K, COMBO_END};
@@ -303,12 +303,12 @@ const uint16_t PROGMEM sf_combo[] = {SRT_S, SFT_F, COMBO_END};
 
 
 combo_t key_combos[] = {
-    COMBO(copy_combo, G(KC_C)),
-    COMBO(paste_combo, G(KC_V)),
-    COMBO(cut_combo, G(KC_X)),
+    // COMBO(copy_combo, G(KC_C)),
+    // COMBO(paste_combo, G(KC_V)),
+    // COMBO(cut_combo, G(KC_X)),
+    // COMBO(undo_combo, G(KC_Z)),
+    // COMBO(redo_combo, G(S(KC_Z))),
     COMBO(save_combo, G(KC_S)),
-    COMBO(undo_combo, G(KC_Z)),
-    COMBO(redo_combo, G(S(KC_Z))),
     COMBO(nav_combo, TO(_NAV)),
     COMBO(sym_combo, OSL(_SYM)),
     COMBO(arr_combo, MY_ARR),
