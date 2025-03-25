@@ -107,9 +107,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_elora_hlc(
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______, 
-      _______, QWERTY , _______, _______, G(KC_SPC), _______,                                   _______, KC_TAB , KC_ENT,  KC_BSPC,  KC_ESC , _______,
-      _______, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, _______,                                     QK_REP , KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-      G(S(KC_Z)), G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C), _______, KC_SCRL, _______, _______, QK_REP , KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, 
+      _______, QWERTY , _______, _______, G(KC_SPC), _______,                                   KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC , _______,
+      _______, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,  _______,
+      G(S(KC_Z)), G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C), _______, KC_SCRL, _______, _______, QK_REP , KC_TAB ,_______,_______,_______,_______, 
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
      _______, _______,  _______, _______, _______,                                                       _______, _______, _______, _______, _______
     ),
