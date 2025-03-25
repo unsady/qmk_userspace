@@ -31,7 +31,7 @@ enum custom_keycodes {
 #define ALT_ENT MT(MOD_LALT, KC_ENT)
 #define ALT_TAB MT(MOD_LALT, KC_TAB)
 #define NAV_SPC LT(_NAV, KC_SPC)
-#define NAV_BSPC LT(_NAV, KC_BSPC)
+#define NAV_ENT LT(_NAV, KC_ENT)
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define SYM_TAB LT(_SYM, KC_TAB)
 #define SRT_S LT(_SRT, KC_S)
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_LBRC,
     _______, SRT_A ,  SRT_S  , GUI_D  ,  SFT_F ,   KC_G ,                                        KC_H,  SFT_J , GUI_K ,   SRT_L ,SRT_SCLN,GUI_QUOT,
     _______, KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_BSPC,CW_TOGG,     ADJUST  , KC_MINS, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
-                             KC_LCTL, KC_LALT,  NAV_BSPC, NAV_SPC, MY_LANG,      FKEYS,  SYM_SPC, SYM_TAB, KC_RALT,KC_RCTL,
+                             KC_LCTL, KC_LALT,  NAV_ENT, NAV_SPC, MY_LANG,      FKEYS,  SYM_SPC, SYM_TAB, KC_RALT,KC_RCTL,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
