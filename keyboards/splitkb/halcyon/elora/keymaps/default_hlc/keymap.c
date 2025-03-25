@@ -31,7 +31,7 @@ enum custom_keycodes {
 #define ALT_ENT MT(MOD_LALT, KC_ENT)
 #define ALT_TAB MT(MOD_LALT, KC_TAB)
 #define NAV_SPC LT(_NAV, KC_SPC)
-#define NAV_ENT LT(_NAV, KC_ENT)
+#define NAV_BSPC LT(_NAV, KC_BSPC)
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define SYM_TAB LT(_SYM, KC_TAB)
 #define SRT_S LT(_SRT, KC_S)
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_Q ,  KC_W   ,  KC_E  ,   KC_R ,   KC_T ,                                        KC_Y,   KC_U ,  KC_I ,   KC_O ,  KC_P , KC_LBRC,
     _______, SRT_A ,  SRT_S  , GUI_D  ,  SFT_F ,   KC_G ,                                        KC_H,  SFT_J , GUI_K ,   SRT_L ,SRT_SCLN,GUI_QUOT,
     _______, KC_Z ,  KC_X   ,  KC_C  ,   KC_V ,   KC_B , KC_BSPC,CW_TOGG,     ADJUST  , KC_MINS, KC_N,   KC_M ,KC_COMM, KC_DOT ,KC_SLSH,ONE_RSFT,
-                             KC_LCTL, KC_LALT,  NAV_ENT, NAV_SPC, MY_LANG,      FKEYS,  SYM_SPC, SYM_TAB, KC_RALT,KC_RCTL,
+                             KC_LCTL, KC_LALT,  NAV_BSPC, NAV_SPC, MY_LANG,      FKEYS,  SYM_SPC, SYM_TAB, KC_RALT,KC_RCTL,
      KC_MUTE, KC_NO,  KC_NO, KC_NO, KC_NO,                                                                KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 
@@ -107,9 +107,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_NAV] = LAYOUT_elora_hlc(
       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______, 
-      _______, QWERTY , _______, _______, G(KC_SPC), _______,                                   _______, KC_TAB , KC_ENT,  KC_BSPC,  KC_ESC , _______,
-      _______, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, _______,                                     QK_REP , KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______,
-      G(S(KC_Z)), G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C), _______, KC_SCRL, _______, _______, QK_REP , KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, 
+      _______, QWERTY , _______, _______, G(KC_SPC), _______,                                   KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC , _______,
+      _______, KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,  _______,
+      G(S(KC_Z)), G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C), _______, KC_SCRL, _______, _______, QK_REP , KC_TAB ,_______,_______,_______,_______, 
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
      _______, _______,  _______, _______, _______,                                                       _______, _______, _______, _______, _______
     ),
