@@ -12,13 +12,15 @@ enum layers {
 #define SYM MO(_SYM)
 #define NAV MO(_NAV)
 #define NAV_BSPC LT(_NAV, KC_BSPC)
+#define SYM_SPC LT(_SYM, KC_SPC)
+#define ONE_SFT OSM(MOD_LSFT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
         KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,         KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,
         KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         KC_SCLN,
         KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
-                                                  KC_P0,        KC_BSPC,      KC_SPC,       KC_P1,
+                                                  KC_P0,        NAV_BSPC,      SYM_SPC,     ONE_SFT,
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
     ),
     [_NAV] = LAYOUT_ferris_hlc(
@@ -29,10 +31,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
-        KC_TRNS,      KC_TRNS,      KC_PGUP,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
-        KC_LEFT,      KC_UP,        KC_DOWN,      KC_RGHT,      KC_TRNS,      KC_TRNS,      KC_LGUI,      KC_NO,        LCTL(KC_LALT), LCA(KC_LSFT),
-        KC_TRNS,      KC_HOME,      KC_PGDN,      KC_END,       KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
-                                                  KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
+      KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC, _______, KC_EQL , KC_PLUS, KC_MINS, KC_UNDS,
+      KC_ASTR, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR, KC_PIPE, KC_QUOT, KC_DQUO, KC_GRV , KC_ASTR,
+      _______, KC_RBRC, KC_RCBR, KC_RPRN, KC_CIRC, _______, KC_TILD, _______, _______, KC_BSLS,
+                                                  _______, _______, _______, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_ADJUST] = LAYOUT_ferris_hlc(
@@ -45,14 +47,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [0] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [1] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [2] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [3] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [4] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [5] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [6] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [7] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}
+    [_QWERTY] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_NAV] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_SYM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
@@ -62,3 +60,27 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #endif // OTHER_KEYMAP_C
 
 
+const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
+
+
+combo_t key_combos[] = {
+    COMBO(esc_combo, KC_ESC),
+    // COMBO(copy_combo, G(KC_C)),
+    // COMBO(paste_combo, G(KC_V)),
+    // COMBO(cut_combo, G(KC_X)),
+    // COMBO(undo_combo, G(KC_Z)),
+    // COMBO(redo_combo, G(S(KC_Z))),
+    // COMBO(save_combo, G(KC_S)),
+    // COMBO(nav_combo, TO(_NAV)),
+    // COMBO(sym_combo, OSL(_SYM)),
+    // COMBO(arr_combo, MY_ARR),
+    // COMBO(tmp_combo, MY_TMP),
+    // COMBO(ent_combo, KC_ENT),
+    // COMBO(bkspc_combo, KC_BSPC),
+    // COMBO(lang_combo, MY_LANG),
+    // COMBO(arr_combo, MY_ARR),
+    // COMBO(eql_combo, KC_EQL),
+    // COMBO(colon_combo, KC_COLN),
+    // COMBO(jl_combo, KC_QUOT),
+    // COMBO(sf_combo, KC_DQT),
+};
