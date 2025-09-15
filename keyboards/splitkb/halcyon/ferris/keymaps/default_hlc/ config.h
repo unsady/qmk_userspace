@@ -1,1 +1,2 @@
 #define ENCODER_RESOLUTION 2
+// #define QUICK_TAP_TERM 0
