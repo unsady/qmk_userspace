@@ -3,10 +3,10 @@
     "build_targets": [
         [
             "splitkb/halcyon/ferris/rev1",
-            "vial_hlc",
+            "default_hlc",
             {
                 "HLC_NONE": "1",
-                "TARGET": "splitkb_halcyon_ferris_rev1_vial_hlc"
+                "TARGET": "splitkb_halcyon_ferris_rev1_default_hlc"
             }
         ]
     ]
