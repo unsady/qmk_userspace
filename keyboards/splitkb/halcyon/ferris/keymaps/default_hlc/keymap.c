@@ -7,6 +7,12 @@ enum layers {
     _ADJUST,
 };
 
+enum custom_keycodes {
+    MY_ARR = SAFE_RANGE,
+    MY_TMP,
+    MY_LANG,
+};
+
 // Aliases for readability
 #define QWERTY TO(_QWERTY)
 #define SYM MO(_SYM)
@@ -59,12 +65,36 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #    include OTHER_KEYMAP_C
 #endif // OTHER_KEYMAP_C
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case MY_ARR:
+        if (record->event.pressed) {
+            SEND_STRING("=>");
+        }
+        break;
+    case MY_TMP:
+        if (record->event.pressed) {
+            SEND_STRING("${");
+        }
+        break;
+    case MY_LANG:
+        if (record->event.pressed) {
+            register_code(KC_LCTL);
+            register_code(KC_SPC);
+            unregister_code(KC_SPC);
+            unregister_code(KC_LCTL);
+        }
+        break;
+    }
+    return true;
+};
 
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
-
+const uint16_t PROGMEM lang_combo[] = {KC_D, KC_V, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
+    COMBO(lang_combo, MY_LANG),
     // COMBO(copy_combo, G(KC_C)),
     // COMBO(paste_combo, G(KC_V)),
     // COMBO(cut_combo, G(KC_X)),
