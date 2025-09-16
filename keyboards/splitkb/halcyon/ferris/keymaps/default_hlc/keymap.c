@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_WIN] = LAYOUT_ferris_hlc(
-        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
+        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      _______,      _______,      _______,      _______,      _______,
         _______,      S(KC_TAB),       KC_Q,     KC_TAB,       _______,      _______,      _______,      _______,      _______,      _______,
         _______,      _______,   _______,       _______,     _______,      _______,      _______,      _______,      _______,      _______,
                                                   _______,      _______,      _______,      _______,
@@ -121,10 +121,12 @@ const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
 const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
     COMBO(lang_combo, MY_LANG),
     COMBO(lcmd_combo, ONE_CMD),
     COMBO(rcmd_combo, ONE_CMD),
+    COMBO(win_combo, WIN),
 };
