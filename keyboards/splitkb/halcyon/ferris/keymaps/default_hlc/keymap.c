@@ -23,7 +23,7 @@ enum custom_keycodes {
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define ONE_SFT OSM(MOD_LSFT)
 #define SHRT MO(_SHRT)
-#define WIN MO(_WIN)
+#define WIN LM(_WIN, MOD_LGUI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -63,8 +63,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_WIN] = LAYOUT_ferris_hlc(
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
-        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
-        _______,      S(KC_TAB),    _______,      KC_TAB,      _______,      _______,      _______,      _______,      _______,      _______,
+        _______,      S(KC_TAB),       _______,     KC_TAB,       _______,      _______,      _______,      _______,      _______,      _______,
+        _______,      _______,   _______,       _______,     _______,      _______,      _______,      _______,      _______,      _______,
                                                   _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     )
@@ -109,23 +109,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-    static bool cmd_pressed = false;
-    
-    if (layer_state_cmp(state, _WIN)) {
-        if (!cmd_pressed) {
-            register_code(KC_LGUI);
-            cmd_pressed = true;
-        }
-    } else {
-        if (cmd_pressed) {
-            unregister_code(KC_LGUI);
-            cmd_pressed = false;
-        }
-    }
-    
-    return state;
-}
 
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
