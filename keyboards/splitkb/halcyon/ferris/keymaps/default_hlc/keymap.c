@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT_ferris_hlc(
         QWERTY , _______, _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
-        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,_______,
+        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,TO(_ADJUST),
                                                   _______, _______,  NUM, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
@@ -135,7 +135,6 @@ const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
-const uint16_t PROGMEM lead_combo[] = {KC_M, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -146,17 +145,5 @@ combo_t key_combos[] = {
     COMBO(ctrl_combo, KC_LCTL),
     COMBO(rctrl_combo, KC_LCTL),
     COMBO(win_combo, WIN),
-    COMBO(arr_combo, MY_ARR),
-    COMBO(lead_combo, QK_LEAD)
+    COMBO(arr_combo, MY_ARR)
 };
-
-void leader_start_user(void) {
-}
-
-void leader_end_user(void) {
-    if (leader_sequence_one_key(KC_SLSH)) {
-        tap_code16(TO(_ADJUST));
-    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
-        SEND_STRING("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-    }
-}
