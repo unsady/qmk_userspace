@@ -25,6 +25,7 @@ enum custom_keycodes {
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define ONE_SFT OSM(MOD_LSFT)
 #define SHRT MO(_SHRT)
+#define ADJUST MO(_ADJUST)
 #define WIN LM(_WIN, MOD_LGUI)
 #define ONE_CMD OSM(MOD_LGUI)
 
@@ -40,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QWERTY , _______, _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,_______,
-                                                  _______, _______, WIN, _______,
+                                                  _______, _______, WIN, ADJUST,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
