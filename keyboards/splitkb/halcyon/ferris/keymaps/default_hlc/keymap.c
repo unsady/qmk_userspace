@@ -100,8 +100,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MY_LANG:
         if (record->event.pressed) {
             register_code(KC_LCTL);
+            wait_ms(10);
             register_code(KC_SPC);
+            wait_ms(10);
             unregister_code(KC_SPC);
+            wait_ms(10);
             unregister_code(KC_LCTL);
         }
         break;
