@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QWERTY , _______, _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,_______,
-                                                  _______, _______, WIN, ADJUST,
+                                                  _______, _______, WIN, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_ADJUST] = LAYOUT_ferris_hlc(
-        RM_TOGG,      RM_NEXT,      RM_HUEU,      RM_SATU,      RM_VALU,      RM_SPDU,      MS_BTN1,      MS_WHLU,      MS_BTN2,      KC_TRNS,
-        KC_TRNS,      MS_BTN2,      KC_NO,        MS_BTN1,      KC_TRNS,      KC_TRNS,      MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,
+        TO(_QWERTY),  RM_NEXT,      RM_HUEU,      RM_SATU,      RM_VALU,      RM_SPDU,      MS_BTN1,      MS_WHLU,      MS_BTN2,      KC_TRNS,
+        RM_TOGG,      MS_BTN2,      KC_NO,        MS_BTN1,      KC_TRNS,      KC_TRNS,      MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,
         KC_TRNS,      RM_PREV,      RM_HUED,      RM_SATD,      RM_VALD,      RM_SPDD,      MS_WHLL,      MS_WHLD,      MS_WHLR,      KC_TRNS,
                                                   KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
@@ -118,15 +118,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
 const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
+const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
+const uint16_t PROGMEM lead_combo[] = {KC_M, KC_DOT, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(esc_combo, KC_ESC),
+    COMBO(esc_combo, LT(_SYM, KC_ESC)),
+    COMBO(tab_combo, LT(_SYM, KC_TAB)),
     COMBO(lang_combo, MY_LANG),
     COMBO(lcmd_combo, ONE_CMD),
     COMBO(rcmd_combo, ONE_CMD),
+    COMBO(ctrl_combo, KC_LCTL),
+    COMBO(rctrl_combo, KC_LCTL),
     COMBO(win_combo, WIN),
+    COMBO(arr_combo, MY_ARR),
+    COMBO(lead_combo, KC_LEAD)
 };
+
+void leader_start_user(void) {
+}
+
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_SLSH)) {
+        TO(_ADJUST);
+    } else if (leader_sequence_two_keys(KC_D, KC_D)) {
+        SEND_STRING("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+    }
+}

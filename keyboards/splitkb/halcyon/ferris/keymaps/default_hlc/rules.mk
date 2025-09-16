@@ -7,3 +7,4 @@ USER_NAME := halcyon_modules
 # REPEAT_KEY_ENABLE = yes
 COMBO_ENABLE = yes
 # CONSOLE_ENABLE = yes
+LEADER_ENABLE = yes
