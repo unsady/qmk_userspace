@@ -29,6 +29,7 @@ enum custom_keycodes {
 #define ADJUST MO(_ADJUST)
 #define WIN LM(_WIN, MOD_LGUI)
 #define ONE_CMD OSM(MOD_LGUI)
+#define ONE_CTL OSM(MOD_LCTL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -142,8 +143,8 @@ combo_t key_combos[] = {
     COMBO(lang_combo, MY_LANG),
     COMBO(lcmd_combo, ONE_CMD),
     COMBO(rcmd_combo, ONE_CMD),
-    COMBO(ctrl_combo, KC_LCTL),
-    COMBO(rctrl_combo, KC_LCTL),
+    COMBO(ctrl_combo, ONE_CTL),
+    COMBO(rctrl_combo, ONE_CTL),
     COMBO(win_combo, WIN),
     COMBO(arr_combo, MY_ARR)
 };
