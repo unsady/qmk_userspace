@@ -7,6 +7,8 @@ enum layers {
     _ADJUST,
     _SHRT,
     _WIN,
+    _NUM,
+    _FUNC,
 };
 
 enum custom_keycodes {
@@ -24,6 +26,7 @@ enum custom_keycodes {
 #define ONE_SFT OSM(MOD_LSFT)
 #define SHRT MO(_SHRT)
 #define WIN LM(_WIN, MOD_LGUI)
+#define ONE_CMD OSM(MOD_LGUI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -55,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SHRT] = LAYOUT_ferris_hlc(
-        G(KC_Q),      G(KC_W),      G(KC_E),      G(KC_R),      G(KC_T),      _______,      _______,      _______,      _______,      _______,
-        G(KC_A),      G(KC_S),      G(KC_D),      G(KC_F),      G(KC_G),      _______,      _______,      _______,      _______,      _______,
-        G(KC_Z),      G(KC_X),      G(KC_C),      G(KC_V),      G(KC_B),      _______,      _______,      _______,      _______,      _______,
+        G(KC_Q),      G(KC_W),      G(KC_E),      G(KC_R),      G(KC_T), MEH(KC_Y),MEH(KC_U),MEH(KC_I),MEH(KC_O),MEH(KC_P),
+        G(KC_A),      G(KC_S),      G(KC_D),      G(KC_F),      G(KC_G), MEH(KC_H),MEH(KC_J),MEH(KC_K),MEH(KC_L),MEH(KC_SCLN),
+        G(KC_Z),      G(KC_X),      G(KC_C),      G(KC_V),      G(KC_B), MEH(KC_N),MEH(KC_M),MEH(KC_COMM),MEH(KC_DOT),MEH(KC_SLSH),
                                                   _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
@@ -115,26 +118,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
+const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
+const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
     COMBO(lang_combo, MY_LANG),
-    // COMBO(copy_combo, G(KC_C)),
-    // COMBO(paste_combo, G(KC_V)),
-    // COMBO(cut_combo, G(KC_X)),
-    // COMBO(undo_combo, G(KC_Z)),
-    // COMBO(redo_combo, G(S(KC_Z))),
-    // COMBO(save_combo, G(KC_S)),
-    // COMBO(nav_combo, TO(_NAV)),
-    // COMBO(sym_combo, OSL(_SYM)),
-    // COMBO(arr_combo, MY_ARR),
-    // COMBO(tmp_combo, MY_TMP),
-    // COMBO(ent_combo, KC_ENT),
-    // COMBO(bkspc_combo, KC_BSPC),
-    // COMBO(lang_combo, MY_LANG),
-    // COMBO(arr_combo, MY_ARR),
-    // COMBO(eql_combo, KC_EQL),
-    // COMBO(colon_combo, KC_COLN),
-    // COMBO(jl_combo, KC_QUOT),
-    // COMBO(sf_combo, KC_DQT),
+    COMBO(lcmd_combo, ONE_CMD),
+    COMBO(rcmd_combo, ONE_CMD),
 };
