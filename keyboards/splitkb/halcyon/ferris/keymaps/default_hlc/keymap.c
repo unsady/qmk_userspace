@@ -6,6 +6,7 @@ enum layers {
     _SYM,
     _ADJUST,
     _SHRT,
+    _WIN,
 };
 
 enum custom_keycodes {
@@ -22,6 +23,7 @@ enum custom_keycodes {
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define ONE_SFT OSM(MOD_LSFT)
 #define SHRT MO(_SHRT)
+#define WIN MO(_WIN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -35,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QWERTY , _______, _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,_______,
-                                                  _______, _______, _______, _______,
+                                                  _______, _______, WIN, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
@@ -58,6 +60,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         G(KC_Z),      G(KC_X),      G(KC_C),      G(KC_V),      G(KC_B),      _______,      _______,      _______,      _______,      _______,
                                                   _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
+    ),
+    [_WIN] = LAYOUT_ferris_hlc(
+        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
+        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
+        _______,      S(KC_TAB),    _______,      KC_TAB,      _______,      _______,      _______,      _______,      _______,      _______,
+                                                  _______,      _______,      _______,      _______,
+        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     )
 };
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
@@ -66,7 +75,8 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_NAV] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_SYM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}
+    [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_WIN] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
@@ -98,6 +108,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    static bool cmd_pressed = false;
+    
+    if (layer_state_cmp(state, _WIN)) {
+        if (!cmd_pressed) {
+            register_code(KC_LGUI);
+            cmd_pressed = true;
+        }
+    } else {
+        if (cmd_pressed) {
+            unregister_code(KC_LGUI);
+            cmd_pressed = false;
+        }
+    }
+    
+    return state;
+}
 
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
