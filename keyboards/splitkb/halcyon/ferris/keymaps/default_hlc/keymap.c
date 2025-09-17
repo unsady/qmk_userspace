@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
     ),
     [_NAV] = LAYOUT_ferris_hlc(
-        A(QK_GESC), G(S(KC_N)), _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
+        A(KC_GRV), G(S(KC_N)), _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,TO(_ADJUST),
                                                   _______, _______,  NUM, WIN,
