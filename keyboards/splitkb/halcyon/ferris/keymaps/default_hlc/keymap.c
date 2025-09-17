@@ -40,9 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
     ),
     [_NAV] = LAYOUT_ferris_hlc(
-        A(KC_ESC), G(S(KC_N)), _______, G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
+        A(KC_ESC), A(KC_ESC),A(KC_ESC), G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
-        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),QK_REP , KC_TAB ,_______,_______,TO(_ADJUST),
+        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), KC_TAB , QK_REP,_______,_______,
                                                   _______, _______,  NUM, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
@@ -136,6 +136,7 @@ const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
+const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -146,5 +147,6 @@ combo_t key_combos[] = {
     COMBO(ctrl_combo, ONE_CTL),
     COMBO(rctrl_combo, ONE_CTL),
     COMBO(win_combo, WIN),
-    COMBO(arr_combo, MY_ARR)
+    COMBO(arr_combo, MY_ARR),
+    COMBO(adjust_combo, TO(_ADJUST)),
 };
