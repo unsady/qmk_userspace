@@ -137,6 +137,7 @@ const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
+const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -149,4 +150,5 @@ combo_t key_combos[] = {
     COMBO(win_combo, WIN),
     COMBO(arr_combo, MY_ARR),
     COMBO(adjust_combo, TO(_ADJUST)),
+    COMBO(rm_toggle_combo, RM_TOGG),
 };
