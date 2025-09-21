@@ -15,7 +15,21 @@ enum custom_keycodes {
     MY_ARR = SAFE_RANGE,
     MY_TMP,
     MY_LANG,
+    NUMWORD,
 };
+
+// NUM WORD state variables
+static bool numword_enabled = false;
+
+// Helper function to check if a keycode is a number key
+bool is_num_key(uint16_t keycode) {
+    return (keycode >= KC_1 && keycode <= KC_0) || 
+           (keycode >= KC_KP_1 && keycode <= KC_KP_0) ||
+           keycode == KC_DOT || keycode == KC_COMM ||
+           keycode == KC_MINUS || keycode == KC_PLUS ||
+           keycode == KC_EQUAL || keycode == KC_SPACE ||
+           keycode == KC_BSPC || keycode == KC_DEL;
+}
 
 // Aliases for readability
 #define QWERTY TO(_QWERTY)
@@ -30,6 +44,7 @@ enum custom_keycodes {
 #define WIN LM(_WIN, MOD_LGUI)
 #define ONE_CMD OSM(MOD_LGUI)
 #define ONE_CTL OSM(MOD_LCTL)
+#define NUM_WORD NUMWORD
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -78,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F4 , KC_F5, 
         KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_F6 ,  KC_F7 ,  KC_F8 ,  KC_F9 , KC_F10,
         _______,      _______,   _______,       _______,     _______,      KC_F11,  KC_F12,  _______,      _______,      _______, 
-                                                  _______,      _______,      _______,      _______,
+                                                  _______,      TO(_QWERTY),      KC_BSPC,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
 };
@@ -101,6 +116,16 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    case NUMWORD:
+        if (record->event.pressed) {
+            numword_enabled = !numword_enabled;
+            if (numword_enabled) {
+                layer_on(_NUM);
+            } else {
+                layer_off(_NUM);
+            }
+        }
+        return false;
     case MY_ARR:
         if (record->event.pressed) {
             SEND_STRING("=>");
@@ -123,6 +148,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         break;
     }
+    
+    // Handle NUMWORD auto-disable when non-number keys are pressed
+    if (numword_enabled && record->event.pressed) {
+        if (!is_num_key(keycode)) {
+            numword_enabled = false;
+            layer_off(_NUM);
+        }
+    }
+    
     return true;
 };
 
@@ -138,6 +172,7 @@ const uint16_t PROGMEM win_combo[] = {KC_M, KC_K, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
 const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
+const uint16_t PROGMEM numword_combo[] = {NAV_BSPC, SYM_SPC, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -151,4 +186,5 @@ combo_t key_combos[] = {
     COMBO(arr_combo, MY_ARR),
     COMBO(adjust_combo, TO(_ADJUST)),
     COMBO(rm_toggle_combo, RM_TOGG),
+    COMBO(numword_combo, NUMWORD),
 };
