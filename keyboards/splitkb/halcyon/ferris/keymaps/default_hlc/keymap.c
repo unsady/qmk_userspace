@@ -203,7 +203,7 @@ const uint16_t PROGMEM num_zero_combo[] = {NAV_BSPC, ONE_SFT, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
-    COMBO(colon_combo, LT(_SYM, KC_COLN)),
+    COMBO(colon_combo, LT(_SYM, KC_TAB)),
     COMBO(quot_combo, LT(_SYM, KC_QUOT)),
     // COMBO(tab_combo, LT(_SYM, KC_TAB)),
     COMBO(lang_combo, MY_LANG),
