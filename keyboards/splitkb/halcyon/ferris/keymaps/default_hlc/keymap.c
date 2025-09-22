@@ -4,10 +4,10 @@ enum layers {
     _QWERTY = 0,
     _NAV,
     _SYM,
+    _NUM,
     _ADJUST,
     _SHRT,
     _WIN,
-    _NUM,
     _FUNC,
 };
 
@@ -69,11 +69,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   _______, NUM, _______, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
-    [_ADJUST] = LAYOUT_ferris_hlc(
-        TO(_QWERTY),  RM_NEXT,      RM_HUEU,      RM_SATU,      RM_VALU,      RM_SPDU,      MS_BTN1,      MS_WHLU,      MS_BTN2,      KC_TRNS,
-        RM_TOGG,      MS_BTN2,      KC_NO,        MS_BTN1,      KC_TRNS,      KC_TRNS,      MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,
-        KC_TRNS,      RM_PREV,      RM_HUED,      RM_SATD,      RM_VALD,      RM_SPDD,      MS_WHLL,      MS_WHLD,      MS_WHLR,      KC_TRNS,
-                                                  KC_TRNS,      KC_TRNS,      KC_TRNS,      KC_TRNS,
+    [_NUM] = LAYOUT_ferris_hlc(
+        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_NO, KC_7,   KC_8,   KC_9,   KC_BSPC,  
+        KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_0   ,KC_4,   KC_5,   KC_6,  KC_ENT,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_NO, KC_1,   KC_2,   KC_3,   KC_NO,  
+                                                  _______,KC_BSPC,KC_SPC,KC_0,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SHRT] = LAYOUT_ferris_hlc(
@@ -84,17 +84,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_WIN] = LAYOUT_ferris_hlc(
-        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      _______,      _______,      _______,      _______,      _______,
-        KC_GRV,      S(KC_TAB),       KC_Q,     KC_TAB,       _______,      _______,      _______,      _______,      _______,      _______,
-        _______,      _______,   _______,       _______,     _______,      _______,      _______,      _______,      _______,      _______,
+        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,
+        KC_GRV,      S(KC_TAB),       KC_Q,     KC_TAB,       KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,
+        KC_NO,      KC_NO,   KC_NO,       KC_NO,     KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,
                                                   _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
-    [_NUM] = LAYOUT_ferris_hlc(
-        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      _______,KC_7,   KC_8,   KC_9,   _______, 
-        KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_0   ,KC_4,   KC_5,   KC_6,   _______,
-        _______,_______,_______,_______,_______,               _______,KC_1,   KC_2,   KC_3,   _______, 
-                                                  _______,      _______,      _______,      KC_0,
+    [_ADJUST] = LAYOUT_ferris_hlc(
+        TO(_QWERTY),  RM_NEXT,      RM_HUEU,      RM_SATU,      RM_VALU,      RM_SPDU,      MS_BTN1,      MS_WHLU,      MS_BTN2,      KC_TRNS,
+        RM_TOGG,      MS_BTN2,      KC_NO,        MS_BTN1,      KC_NO  ,      KC_NO  ,      MS_LEFT,      MS_DOWN,      MS_UP,        MS_RGHT,
+        KC_NO  ,      RM_PREV,      RM_HUED,      RM_SATD,      RM_VALD,      RM_SPDD,      MS_WHLL,      MS_WHLD,      MS_WHLR,      KC_NO  ,
+                                                  _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
 };
@@ -103,10 +103,10 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_QWERTY] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_NAV] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_SYM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_NUM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_WIN] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
-    [_NUM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
@@ -165,8 +165,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // Handle NUMWORD auto-disable when non-number keys are pressed
     if (numword_enabled && record->event.pressed) {
         if (!is_num_key(keycode)) {
+            // skip KC_NO codes
+            if (keycode != KC_NO) {
+                tap_code16(keycode);
+            }
             numword_enabled = false;
             layer_off(_NUM);
+            return false;
         }
     }
     
