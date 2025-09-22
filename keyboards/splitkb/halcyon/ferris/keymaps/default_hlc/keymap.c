@@ -45,11 +45,12 @@ bool is_num_key(uint16_t keycode) {
 #define ONE_CMD OSM(MOD_LGUI)
 #define ONE_CTL OSM(MOD_LCTL)
 #define NUM_WORD NUMWORD
+#define WIN_TAB LT(_WIN, KC_SCLN)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
         KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,         KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,
-        KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         KC_SCLN,
+        KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         LT(_WIN, KC_SCLN),
         KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
                                                   SHRT,        NAV_BSPC,      SYM_SPC,     ONE_SFT,
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
@@ -147,6 +148,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             unregister_code(KC_LCTL);
         }
         break;
+    case LT(_WIN, KC_SCLN):
+        if (!record->tap.count) {
+            if (record->event.pressed) {
+                layer_on(_WIN);
+                register_mods(MOD_BIT(KC_LGUI));
+            } else {
+                layer_off(_WIN);
+                unregister_mods(MOD_BIT(KC_LGUI));
+            }
+            return false; // блокируем стандартный hold
+        }
+        return true;             // Return true for normal processing of tap keycode
     }
     
     // Handle NUMWORD auto-disable when non-number keys are pressed
