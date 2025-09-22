@@ -50,7 +50,7 @@ bool is_num_key(uint16_t keycode) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
         KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,         KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,
-        KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         LT(_WIN, KC_SCLN),
+        KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         KC_SCLN,
         KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
                                                   SHRT,        NAV_BSPC,      SYM_SPC,     ONE_SFT,
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
@@ -181,11 +181,13 @@ const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
 const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
 const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
-const uint16_t PROGMEM win_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM win_combo[] = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
 const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
 const uint16_t PROGMEM numword_combo[] = {NAV_BSPC, SYM_SPC, COMBO_END};
+const uint16_t PROGMEM colon_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM quot_combo[] = {KC_J, KC_L, COMBO_END};
 
 // num combos
 const uint16_t PROGMEM num_one_combo[] = {NAV_BSPC, KC_M, COMBO_END};
@@ -201,6 +203,8 @@ const uint16_t PROGMEM num_zero_combo[] = {NAV_BSPC, ONE_SFT, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
+    COMBO(colon_combo, LT(_SYM, KC_COLN)),
+    COMBO(quot_combo, LT(_SYM, KC_QUOT)),
     // COMBO(tab_combo, LT(_SYM, KC_TAB)),
     COMBO(lang_combo, MY_LANG),
     COMBO(lcmd_combo, ONE_CMD),
