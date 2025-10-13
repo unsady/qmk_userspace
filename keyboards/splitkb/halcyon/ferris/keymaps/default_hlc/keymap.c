@@ -9,6 +9,7 @@ enum layers {
     _SHRT,
     _WIN,
     _FUNC,
+    _GAME,
 };
 
 enum custom_keycodes {
@@ -33,6 +34,7 @@ bool is_num_key(uint16_t keycode) {
 
 // Aliases for readability
 #define QWERTY TO(_QWERTY)
+#define GAME TO(_GAME)
 #define SYM MO(_SYM)
 #define NAV MO(_NAV)
 #define NAV_BSPC LT(_NAV, KC_BSPC)
@@ -73,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_NO, KC_7,   KC_8,   KC_9,   KC_BSPC,  
         KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_0   ,KC_4,   KC_5,   KC_6,  KC_ENT,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_NO, KC_1,   KC_2,   KC_3,   KC_NO,  
-                                                  _______,KC_BSPC,KC_SPC,KC_0,
+                                                  KC_NO,KC_BSPC,KC_SPC,KC_0,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SHRT] = LAYOUT_ferris_hlc(
@@ -97,6 +99,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                   _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
+    [_GAME] = LAYOUT_ferris_hlc(
+        KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,         KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,
+        KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         KC_SCLN,
+        KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
+                                                  KC_ESC,      KC_SPC,       TO(_QWERTY),      TO(_QWERTY),
+        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_NO,      KC_NO,        KC_NO,        KC_NO,        KC_NO
+    ),
 };
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
@@ -107,6 +116,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_WIN] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
     [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_GAME] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
@@ -114,6 +124,15 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 #ifdef OTHER_KEYMAP_C
 #    include OTHER_KEYMAP_C
 #endif // OTHER_KEYMAP_C
+
+
+// Disable all combos in GAME layer
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    if (layer_state_is(_GAME)) {
+        return false;
+    }
+    return true;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -189,6 +208,7 @@ const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
+const uint16_t PROGMEM game_combo[] = {KC_Q, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
 const uint16_t PROGMEM numword_combo[] = {NAV_BSPC, SYM_SPC, COMBO_END};
 const uint16_t PROGMEM colon_combo[] = {KC_J, KC_K, COMBO_END};
@@ -219,6 +239,7 @@ combo_t key_combos[] = {
     COMBO(win_combo, WIN),
     COMBO(arr_combo, MY_ARR),
     COMBO(adjust_combo, TO(_ADJUST)),
+    COMBO(game_combo, TO(_GAME)),
     COMBO(rm_toggle_combo, RM_TOGG),
     COMBO(numword_combo, NUMWORD),
 
@@ -234,3 +255,4 @@ combo_t key_combos[] = {
     COMBO(num_nine_combo, KC_9),
     COMBO(num_zero_combo, KC_0),
 };
+
