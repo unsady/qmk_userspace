@@ -61,14 +61,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         A(KC_ESC), A(KC_ESC),A(KC_ESC), G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), KC_TAB , QK_REP,_______,_______,
-                                                  _______, _______,  NUM, WIN,
+                                                  _______, _______,  _______, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
       KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC, _______, KC_EQL , KC_PLUS, KC_MINS, KC_UNDS,
       KC_ASTR, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR, KC_PIPE, KC_QUOT, KC_DQUO, KC_GRV , KC_ASTR,
       _______, KC_RBRC, KC_RCBR, KC_RPRN, KC_CIRC, _______, KC_TILD, _______, _______, KC_BSLS,
-                                                  _______, NUM, _______, _______,
+                                                  _______, _______, _______, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_NUM] = LAYOUT_ferris_hlc(
