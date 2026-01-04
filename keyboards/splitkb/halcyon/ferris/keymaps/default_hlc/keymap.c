@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NAV] = LAYOUT_ferris_hlc(
         G(KC_SPC), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T), KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         ONE_CTL, ONE_ALT, ONE_CMD, ONE_SFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
-        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), KC_TAB , QK_REP,_______,_______,
+        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), QK_REP, QK_REP, QK_CAPS_WORD,_______,
                                                   _______, _______,  NUM, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
