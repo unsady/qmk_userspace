@@ -36,10 +36,10 @@ bool is_num_key(uint16_t keycode) {
 #define QWERTY TO(_QWERTY)
 #define GAME TO(_GAME)
 #define SYM MO(_SYM)
-#define NAV OSL(_NAV)
+#define NAV LT(_NAV, KC_BSPC)
 #define SYM_SPC LT(_SYM, KC_SPC)
 #define SHRT MO(_SHRT)
-#define NUM OSL(_NUM)
+#define NUM MO(_NUM)
 #define ADJUST MO(_ADJUST)
 #define WIN LM(_WIN, MOD_LGUI)
 #define ONE_CMD OSM(MOD_LGUI)
@@ -58,10 +58,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
     ),
     [_NAV] = LAYOUT_ferris_hlc(
-        G(KC_Q), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T), KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
+        G(KC_SPC), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T), KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
         ONE_CTL, ONE_ALT, ONE_CMD, ONE_SFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), KC_TAB , QK_REP,_______,_______,
-                                                  _______, NAV,  NUM, WIN,
+                                                  _______, _______,  NUM, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_ASTR, KC_7,    KC_8,    KC_9,    KC_SLSH,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_PLUS, KC_4,    KC_5,    KC_6,    KC_MINS,
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,            KC_0,    KC_1,    KC_2,    KC_3,    KC_DOT,
-                                                  KC_NO,KC_BSPC,NUM,KC_0,
+                                                  KC_NO,KC_BSPC,_______,KC_0,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SHRT] = LAYOUT_ferris_hlc(
