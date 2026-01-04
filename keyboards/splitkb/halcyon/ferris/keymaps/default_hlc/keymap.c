@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_EXLM,  KC_AT , KC_HASH,  KC_DLR, KC_PERC, _______, KC_EQL , KC_PLUS, KC_MINS, KC_UNDS,
       KC_ASTR, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR, KC_PIPE, KC_QUOT, KC_DQUO, KC_GRV , KC_ASTR,
       _______, KC_RBRC, KC_RCBR, KC_RPRN, KC_CIRC, _______, KC_TILD, _______, _______, KC_BSLS,
-                                                  _______, _______, _______, _______,
+                                                  _______, NUM, _______, _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_NUM] = LAYOUT_ferris_hlc(
