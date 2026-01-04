@@ -36,16 +36,16 @@ bool is_num_key(uint16_t keycode) {
 #define QWERTY TO(_QWERTY)
 #define GAME TO(_GAME)
 #define SYM MO(_SYM)
-#define NAV MO(_NAV)
-#define NAV_BSPC LT(_NAV, KC_BSPC)
+#define NAV OSL(_NAV)
 #define SYM_SPC LT(_SYM, KC_SPC)
-#define ONE_SFT OSM(MOD_LSFT)
 #define SHRT MO(_SHRT)
-#define NUM MO(_NUM)
+#define NUM OSL(_NUM)
 #define ADJUST MO(_ADJUST)
 #define WIN LM(_WIN, MOD_LGUI)
 #define ONE_CMD OSM(MOD_LGUI)
 #define ONE_CTL OSM(MOD_LCTL)
+#define ONE_ALT OSM(MOD_LALT)
+#define ONE_SFT OSM(MOD_LSFT)
 #define NUM_WORD NUMWORD
 #define WIN_TAB LT(_WIN, KC_SCLN)
 
@@ -54,14 +54,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Q,         KC_W,         KC_E,         KC_R,         KC_T,         KC_Y,         KC_U,         KC_I,         KC_O,         KC_P,
         KC_A,         KC_S,         KC_D,         KC_F,         KC_G,         KC_H,         KC_J,         KC_K,         KC_L,         KC_SCLN,
         KC_Z,         KC_X,         KC_C,         KC_V,         KC_B,         KC_N,         KC_M,         KC_COMM,      KC_DOT,       KC_SLSH,
-                                                  SHRT,        NAV_BSPC,      SYM_SPC,     ONE_SFT,
+                                                  SHRT,        NAV,           SYM_SPC,     ONE_SFT,
         KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO,        KC_MUTE,      KC_NO,        KC_NO,        KC_NO,        KC_NO
     ),
     [_NAV] = LAYOUT_ferris_hlc(
-        A(KC_ESC), A(KC_ESC),A(KC_ESC), G(KC_SPC), _______,KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
-        KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
+        HYPR(KC_Q), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T), KC_PGUP, KC_TAB , KC_UP, KC_BSPC,  KC_ESC ,
+        ONE_CTL, ONE_ALT, ONE_CMD, ONE_SFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,KC_ENT,
         G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C),G(S(KC_N)), KC_TAB , QK_REP,_______,_______,
-                                                  _______, _______,  _______, WIN,
+                                                  _______, NAV,  NUM, WIN,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SYM] = LAYOUT_ferris_hlc(
@@ -72,10 +72,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_NUM] = LAYOUT_ferris_hlc(
-        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_NO, KC_7,   KC_8,   KC_9,   KC_BSPC,  
-        KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_0   ,KC_4,   KC_5,   KC_6,  KC_ENT,
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_NO, KC_1,   KC_2,   KC_3,   KC_NO,  
-                                                  KC_NO,KC_BSPC,KC_SPC,KC_0,
+        KC_1,      KC_2,      KC_3,      KC_4,      KC_5,      KC_NO,   KC_ASTR, KC_7,   KC_8,   KC_9,   KC_SLSH,
+        KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_0   , KC_PLUS, KC_4,   KC_5,   KC_6,   KC_MINS,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                KC_NO, KC_0,    KC_1,   KC_2,   KC_3,   KC_DOT,
+                                                  KC_NO,KC_BSPC,NUM,KC_0,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
     ),
     [_SHRT] = LAYOUT_ferris_hlc(
@@ -210,21 +210,21 @@ const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
 const uint16_t PROGMEM game_combo[] = {KC_Q, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
-const uint16_t PROGMEM numword_combo[] = {NAV_BSPC, SYM_SPC, COMBO_END};
+// const uint16_t PROGMEM numword_combo[] = {NAV, SYM_SPC, COMBO_END};
 const uint16_t PROGMEM colon_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM quot_combo[] = {KC_J, KC_L, COMBO_END};
 
 // num combos
-const uint16_t PROGMEM num_one_combo[] = {NAV_BSPC, KC_M, COMBO_END};
-const uint16_t PROGMEM num_two_combo[] = {NAV_BSPC, KC_COMM, COMBO_END};
-const uint16_t PROGMEM num_three_combo[] = {NAV_BSPC, KC_DOT, COMBO_END};
-const uint16_t PROGMEM num_four_combo[] = {NAV_BSPC, KC_J, COMBO_END};
-const uint16_t PROGMEM num_five_combo[] = {NAV_BSPC, KC_K, COMBO_END};
-const uint16_t PROGMEM num_six_combo[] = {NAV_BSPC, KC_L, COMBO_END};
-const uint16_t PROGMEM num_seven_combo[] = {NAV_BSPC, KC_U, COMBO_END};
-const uint16_t PROGMEM num_eight_combo[] = {NAV_BSPC, KC_I, COMBO_END};
-const uint16_t PROGMEM num_nine_combo[] = {NAV_BSPC, KC_O, COMBO_END};
-const uint16_t PROGMEM num_zero_combo[] = {NAV_BSPC, ONE_SFT, COMBO_END};
+const uint16_t PROGMEM num_one_combo[] = {NAV, KC_M, COMBO_END};
+const uint16_t PROGMEM num_two_combo[] = {NAV, KC_COMM, COMBO_END};
+const uint16_t PROGMEM num_three_combo[] = {NAV, KC_DOT, COMBO_END};
+const uint16_t PROGMEM num_four_combo[] = {NAV, KC_J, COMBO_END};
+const uint16_t PROGMEM num_five_combo[] = {NAV, KC_K, COMBO_END};
+const uint16_t PROGMEM num_six_combo[] = {NAV, KC_L, COMBO_END};
+const uint16_t PROGMEM num_seven_combo[] = {NAV, KC_U, COMBO_END};
+const uint16_t PROGMEM num_eight_combo[] = {NAV, KC_I, COMBO_END};
+const uint16_t PROGMEM num_nine_combo[] = {NAV, KC_O, COMBO_END};
+const uint16_t PROGMEM num_zero_combo[] = {NAV, ONE_SFT, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -241,7 +241,7 @@ combo_t key_combos[] = {
     COMBO(adjust_combo, TO(_ADJUST)),
     COMBO(game_combo, TO(_GAME)),
     COMBO(rm_toggle_combo, RM_TOGG),
-    COMBO(numword_combo, NUMWORD),
+    // COMBO(numword_combo, NUMWORD),
 
     // num combos
     COMBO(num_one_combo, KC_1),
@@ -255,4 +255,3 @@ combo_t key_combos[] = {
     COMBO(num_nine_combo, KC_9),
     COMBO(num_zero_combo, KC_0),
 };
-
