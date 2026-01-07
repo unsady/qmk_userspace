@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NUM] = LAYOUT_ferris_hlc(
         KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-        KC_5,    KC_4,    KC_3,    KC_1,    KC_9,    KC_8,    KC_0,    KC_2,    KC_6,    KC_7,
+        KC_7,    KC_5,    KC_3,    KC_1,    KC_9,    KC_8,    KC_0,    KC_2,    KC_4,    KC_6,
         KC_DOT,  KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_SLSH, KC_EQL,  KC_COLN, KC_COMM, KC_UNDS,
                                                   KC_NO,KC_NO,KC_NO,KC_NO,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______
@@ -232,10 +232,10 @@ const uint16_t PROGMEM quot_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM num_one_combo[] = {NAV, KC_F, COMBO_END};
 const uint16_t PROGMEM num_two_combo[] = {NAV, KC_K, COMBO_END};
 const uint16_t PROGMEM num_three_combo[] = {NAV, KC_D, COMBO_END};
-const uint16_t PROGMEM num_four_combo[] = {NAV, KC_S, COMBO_END};
-const uint16_t PROGMEM num_five_combo[] = {NAV, KC_A, COMBO_END};
-const uint16_t PROGMEM num_six_combo[] = {NAV, KC_L, COMBO_END};
-const uint16_t PROGMEM num_seven_combo[] = {NAV, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM num_four_combo[] = {NAV, KC_L, COMBO_END};
+const uint16_t PROGMEM num_five_combo[] = {NAV, KC_S, COMBO_END};
+const uint16_t PROGMEM num_six_combo[] = {NAV, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM num_seven_combo[] = {NAV, KC_A, COMBO_END};
 const uint16_t PROGMEM num_eight_combo[] = {NAV, KC_H, COMBO_END};
 const uint16_t PROGMEM num_nine_combo[] = {NAV, KC_G, COMBO_END};
 const uint16_t PROGMEM num_zero_combo[] = {NAV, KC_J, COMBO_END};
