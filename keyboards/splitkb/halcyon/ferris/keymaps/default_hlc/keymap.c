@@ -202,10 +202,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
-const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
-const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
-const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
-const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
+// const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
+// const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
+// const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
+// const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM win_combo[] = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM arr_combo[] = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[] = {KC_Z, KC_P, COMBO_END};
@@ -233,10 +233,10 @@ combo_t key_combos[] = {
     COMBO(quot_combo, LT(_SYM, KC_QUOT)),
     // COMBO(tab_combo, LT(_SYM, KC_TAB)),
     COMBO(lang_combo, MY_LANG),
-    COMBO(lcmd_combo, ONE_CMD),
-    COMBO(rcmd_combo, ONE_CMD),
-    COMBO(ctrl_combo, ONE_CTL),
-    COMBO(rctrl_combo, ONE_CTL),
+    // COMBO(lcmd_combo, ONE_CMD),
+    // COMBO(rcmd_combo, ONE_CMD),
+    // COMBO(ctrl_combo, ONE_CTL),
+    // COMBO(rctrl_combo, ONE_CTL),
     COMBO(win_combo, WIN),
     COMBO(arr_combo, MY_ARR),
     COMBO(adjust_combo, TO(_ADJUST)),
