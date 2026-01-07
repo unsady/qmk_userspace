@@ -181,6 +181,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false; // блокируем стандартный hold
         }
         return true;             // Return true for normal processing of tap keycode
+    case LT(_WIN, KC_J):
+        if (!record->tap.count) {
+            if (record->event.pressed) {
+                layer_on(_WIN);
+                register_mods(MOD_BIT(KC_LGUI));
+            } else {
+                layer_off(_WIN);
+                unregister_mods(MOD_BIT(KC_LGUI));
+            }
+            return false; // блокируем стандартный hold
+        }
+        return true;             // Return true for normal processing of tap keycode
     }
     
     // Handle NUMWORD auto-disable when non-number keys are pressed
