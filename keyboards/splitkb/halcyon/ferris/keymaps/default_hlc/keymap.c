@@ -45,14 +45,62 @@ bool is_num_key(uint16_t keycode) {
 #define WIN_J LT(_WIN, KC_J)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_QWERTY] = LAYOUT_ferris_hlc(KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, WIN_J, KC_K, KC_L, KC_SCLN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, SHRT, NAV, SYM_SPC, ONE_SFT, KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO, KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO),
-    [_NAV]    = LAYOUT_ferris_hlc(G(KC_SPC), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T), KC_PGUP, KC_TAB, KC_UP, KC_BSPC, KC_ESC, ONE_CTL, ONE_ALT, ONE_CMD, ONE_SFT, MY_LANG, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT, G(KC_Z), G(KC_X), G(KC_C), G(KC_V), C(KC_C), G(S(KC_N)), QK_REP, QK_REP, CW_TOGG, _______, _______, _______, NUM, WIN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_SYM]    = LAYOUT_ferris_hlc(KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, _______, KC_EQL, KC_PLUS, KC_MINS, KC_UNDS, KC_ASTR, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR, KC_PIPE, KC_QUOT, KC_DQUO, KC_GRV, KC_ASTR, _______, KC_RBRC, KC_RCBR, KC_RPRN, KC_CIRC, _______, KC_TILD, _______, _______, KC_BSLS, _______, NUM, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_NUM]    = LAYOUT_ferris_hlc(KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_7, KC_5, KC_3, KC_1, KC_9, KC_8, KC_0, KC_2, KC_4, KC_6, KC_DOT, KC_PLUS, KC_MINS, KC_ASTR, KC_PERC, KC_SLSH, KC_EQL, KC_COLN, KC_COMM, KC_UNDS, KC_NO, KC_NO, KC_NO, KC_NO, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_SHRT]   = LAYOUT_ferris_hlc(G(KC_Q), G(KC_W), G(KC_E), G(KC_R), G(KC_T), MEH(KC_Y), MEH(KC_U), MEH(KC_I), MEH(KC_O), MEH(KC_P), G(KC_A), G(KC_S), G(KC_D), G(KC_F), G(KC_G), MEH(KC_H), MEH(KC_J), MEH(KC_K), MEH(KC_L), MEH(KC_SCLN), G(KC_Z), G(KC_X), G(KC_C), G(KC_V), G(KC_B), MEH(KC_N), MEH(KC_M), MEH(KC_COMM), MEH(KC_DOT), MEH(KC_SLSH), _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_WIN]    = LAYOUT_ferris_hlc(KC_1, KC_2, KC_3, KC_4, KC_5, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_GRV, S(KC_TAB), KC_Q, KC_TAB, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_ADJUST] = LAYOUT_ferris_hlc(TO(_QWERTY), RM_NEXT, RM_HUEU, RM_SATU, RM_VALU, RM_SPDU, MS_BTN1, MS_WHLU, MS_BTN2, KC_TRNS, RM_TOGG, MS_BTN2, KC_NO, MS_BTN1, KC_NO, KC_NO, MS_LEFT, MS_DOWN, MS_UP, MS_RGHT, KC_NO, RM_PREV, RM_HUED, RM_SATD, RM_VALD, RM_SPDD, MS_WHLL, MS_WHLD, MS_WHLR, KC_NO, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
-    [_GAME]   = LAYOUT_ferris_hlc(KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_ESC, KC_SPC, TO(_QWERTY), TO(_QWERTY), KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO),
+    [_QWERTY] = LAYOUT_ferris_hlc(
+        KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,             KC_Y,   KC_U,   KC_I,    KC_O,    KC_P,
+        KC_A,   KC_S,   KC_D,   KC_F,   KC_G,             KC_H,   KC_J,   KC_K,    KC_L,    KC_SCLN,
+        KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,             KC_N,   KC_M,   KC_COMM, KC_DOT,  KC_SLSH,
+                SHRT,   NAV,                              SYM_SPC, ONE_SFT,
+        KC_MUTE,KC_NO,  KC_NO,  KC_NO,  KC_NO,            KC_MUTE,KC_NO,  KC_NO,   KC_NO,   KC_NO
+    ),
+    [_NAV] = LAYOUT_ferris_hlc(
+        G(KC_SPC), HYPR(KC_W), HYPR(KC_E), HYPR(KC_R), HYPR(KC_T),            KC_PGUP, KC_TAB, KC_UP,   KC_BSPC, KC_ESC,
+        ONE_CTL,   ONE_ALT,   ONE_CMD,    ONE_SFT,     MY_LANG,               KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,
+        G(KC_Z),   G(KC_X),   G(KC_C),    G(KC_V),     C(KC_C),               G(S(KC_N)), QK_REP, QK_REP, CW_TOGG, _______,
+                    _______,   _______,                                                  NUM,       WIN,
+        _______,   _______,   _______,    _______,     _______,               _______,   _______,   _______,  _______, _______
+    ),
+    [_SYM] = LAYOUT_ferris_hlc(
+        KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,            _______, KC_EQL,  KC_PLUS, KC_MINS, KC_UNDS,
+        KC_ASTR, KC_LBRC, KC_LCBR, KC_LPRN, KC_AMPR,            KC_PIPE, KC_QUOT, KC_DQUO, KC_GRV,  KC_ASTR,
+        _______, KC_RBRC, KC_RCBR, KC_RPRN, KC_CIRC,            _______, KC_TILD, _______, _______, KC_BSLS,
+                    _______, _______,                                                 NUM,     _______,
+        _______, _______, _______, _______, _______,            _______, _______, _______, _______, _______
+    ),
+    [_NUM] = LAYOUT_ferris_hlc(
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_7,  KC_5,  KC_3,  KC_1,  KC_9,             KC_8,  KC_0,  KC_2,  KC_4,  KC_6,
+        KC_DOT,KC_PLUS,KC_MINS,KC_ASTR,KC_PERC,       KC_SLSH, KC_EQL, KC_COLN, KC_COMM, KC_UNDS,
+                KC_NO, KC_NO,                                      KC_NO, KC_NO,
+        _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______
+    ),
+    [_SHRT] = LAYOUT_ferris_hlc(
+        G(KC_Q), G(KC_W), G(KC_E), G(KC_R), G(KC_T),           MEH(KC_Y), MEH(KC_U), MEH(KC_I), MEH(KC_O), MEH(KC_P),
+        G(KC_A), G(KC_S), G(KC_D), G(KC_F), G(KC_G),           MEH(KC_H), MEH(KC_J), MEH(KC_K), MEH(KC_L), MEH(KC_SCLN),
+        G(KC_Z), G(KC_X), G(KC_C), G(KC_V), G(KC_B),           MEH(KC_N), MEH(KC_M), MEH(KC_COMM), MEH(KC_DOT), MEH(KC_SLSH),
+                _______, _______,                                        _______, _______,
+        _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______
+    ),
+    [_WIN] = LAYOUT_ferris_hlc(
+        KC_1, KC_2, KC_3, KC_4, KC_5,            KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_GRV, S(KC_TAB), KC_Q, KC_TAB, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+                _______, _______,                            _______, _______,
+        _______, _______, _______, _______, _______,         _______, _______, _______, _______, _______
+    ),
+    [_ADJUST] = LAYOUT_ferris_hlc(
+        TO(_QWERTY), RM_NEXT, RM_HUEU, RM_SATU, RM_VALU,            RM_SPDU, MS_BTN1, MS_WHLU, MS_BTN2, KC_TRNS,
+        RM_TOGG,    MS_BTN2, KC_NO,   MS_BTN1, KC_NO,               KC_NO,   MS_LEFT, MS_DOWN, MS_UP,   MS_RGHT,
+        KC_NO,      RM_PREV, RM_HUED, RM_SATD, RM_VALD,            RM_SPDD, MS_WHLL, MS_WHLD, MS_WHLR, KC_NO,
+                    _______, _______,                                             _______, _______,
+        _______,    _______, _______, _______, _______,             _______, _______, _______, _______, _______
+    ),
+    [_GAME] = LAYOUT_ferris_hlc(
+        KC_Q, KC_W, KC_E, KC_R, KC_T,            KC_Y, KC_U, KC_I, KC_O, KC_P,
+        KC_A, KC_S, KC_D, KC_F, KC_G,            KC_H, KC_J, KC_K, KC_L, KC_SCLN,
+        KC_Z, KC_X, KC_C, KC_V, KC_B,            KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+                KC_ESC, KC_SPC,                           TO(_QWERTY), TO(_QWERTY),
+        KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+    ),
 };
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
@@ -148,20 +196,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 const uint16_t PROGMEM esc_combo[]  = {KC_D, KC_F, COMBO_END};
-const uint16_t PROGMEM tab_combo[]  = {WIN_J, KC_K, COMBO_END};
+const uint16_t PROGMEM tab_combo[]  = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
 // const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
 // const uint16_t PROGMEM rcmd_combo[] = {KC_K, KC_L, COMBO_END};
 // const uint16_t PROGMEM ctrl_combo[] = {KC_C, KC_V, COMBO_END};
 // const uint16_t PROGMEM rctrl_combo[] = {KC_M, KC_COMM, COMBO_END};
-// const uint16_t PROGMEM win_combo[] = {KC_H, KC_J, COMBO_END};
+const uint16_t PROGMEM win_combo[]       = {KC_H, KC_J, COMBO_END};
 const uint16_t PROGMEM arr_combo[]       = {KC_U, KC_O, COMBO_END};
 const uint16_t PROGMEM adjust_combo[]    = {KC_Z, KC_P, COMBO_END};
 const uint16_t PROGMEM game_combo[]      = {KC_Q, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM rm_toggle_combo[] = {KC_Y, KC_P, COMBO_END};
 // const uint16_t PROGMEM numword_combo[] = {NAV, SYM_SPC, COMBO_END};
-const uint16_t PROGMEM colon_combo[] = {WIN_J, KC_K, COMBO_END};
-const uint16_t PROGMEM quot_combo[]  = {WIN_J, KC_L, COMBO_END};
+const uint16_t PROGMEM colon_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM quot_combo[]  = {KC_J, KC_L, COMBO_END};
 
 // num combos
 const uint16_t PROGMEM num_one_combo[]   = {NAV, KC_F, COMBO_END};
@@ -173,7 +221,7 @@ const uint16_t PROGMEM num_six_combo[]   = {NAV, KC_SCLN, COMBO_END};
 const uint16_t PROGMEM num_seven_combo[] = {NAV, KC_A, COMBO_END};
 const uint16_t PROGMEM num_eight_combo[] = {NAV, KC_H, COMBO_END};
 const uint16_t PROGMEM num_nine_combo[]  = {NAV, KC_G, COMBO_END};
-const uint16_t PROGMEM num_zero_combo[]  = {NAV, WIN_J, COMBO_END};
+const uint16_t PROGMEM num_zero_combo[]  = {NAV, KC_J, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, LT(_SYM, KC_ESC)),
@@ -185,7 +233,7 @@ combo_t key_combos[] = {
     // COMBO(rcmd_combo, ONE_CMD),
     // COMBO(ctrl_combo, ONE_CTL),
     // COMBO(rctrl_combo, ONE_CTL),
-    // COMBO(win_combo, WIN),
+    COMBO(win_combo, WIN),
     COMBO(arr_combo, MY_ARR),
     COMBO(adjust_combo, TO(_ADJUST)),
     COMBO(game_combo, TO(_GAME)),
