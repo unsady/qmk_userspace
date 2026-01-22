@@ -9,6 +9,7 @@ enum layers {
     _SHRT,
     _WIN,
     _GAME,
+    _GAME_ESC,
 };
 
 enum custom_keycodes {
@@ -43,6 +44,7 @@ bool is_num_key(uint16_t keycode) {
 #define NUM_WORD NUMWORD
 #define WIN_TAB LT(_WIN, KC_SCLN)
 #define WIN_J LT(_WIN, KC_J)
+#define GAME_ESC LT(_GAME_ESC, KC_ESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_ferris_hlc(
@@ -95,16 +97,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,    _______, _______, _______, _______,             _______, _______, _______, _______, _______
     ),
     [_GAME] = LAYOUT_ferris_hlc(
-        KC_Q, KC_W, KC_E, KC_R, KC_T,            KC_Y, KC_U, KC_I, KC_O, KC_P,
-        KC_A, KC_S, KC_D, KC_F, KC_G,            KC_H, KC_J, KC_K, KC_L, KC_SCLN,
-        KC_Z, KC_X, KC_C, KC_V, KC_B,            KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-                KC_ESC, KC_SPC,                           TO(_QWERTY), TO(_QWERTY),
+        KC_NO, KC_Q, KC_W, KC_E, KC_R,           KC_Y, KC_U, KC_I, KC_O, KC_P,
+        KC_LSFT, KC_A, KC_S, KC_D, KC_F,         KC_H, KC_J, KC_K, KC_L, KC_SCLN,
+        KC_LCTL, KC_Z, KC_X, KC_C, KC_V,         KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+                GAME_ESC, KC_SPC,                         TO(_QWERTY), TO(_QWERTY),
         KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+    ),
+    [_GAME_ESC] = LAYOUT_ferris_hlc(
+        KC_1,  KC_2,  KC_3,  KC_4,  KC_5,         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_6,  KC_7,  KC_8,  KC_9,  KC_0,         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+                KC_NO, KC_NO,                            KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
     ),
 };
 #if defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-    [_QWERTY] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_NAV] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_SYM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_NUM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_WIN] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_GAME] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
+    [_QWERTY] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_NAV] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_SYM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_NUM] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_SHRT] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_WIN] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_ADJUST] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_GAME] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)}, [_GAME_ESC] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_PGUP, KC_PGDN)},
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
