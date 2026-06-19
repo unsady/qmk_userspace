@@ -204,7 +204,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-const uint16_t PROGMEM esc_combo[]  = {KC_D, KC_F, COMBO_END};
+const uint16_t PROGMEM esc_combo[]  = {KC_Q, KC_W, COMBO_END};
+const uint16_t PROGMEM sym_combo[]  = {KC_D, KC_F, COMBO_END};
 const uint16_t PROGMEM tab_combo[]  = {KC_J, KC_K, COMBO_END};
 const uint16_t PROGMEM lang_combo[] = {KC_D, KC_K, COMBO_END};
 // const uint16_t PROGMEM lcmd_combo[] = {KC_S, KC_D, COMBO_END};
@@ -233,7 +234,8 @@ const uint16_t PROGMEM num_nine_combo[]  = {NAV, KC_G, COMBO_END};
 const uint16_t PROGMEM num_zero_combo[]  = {NAV, KC_J, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(esc_combo, LT(_SYM, KC_ESC)),
+    COMBO(esc_combo, KC_ESC),
+    COMBO(sym_combo, MO(_SYM)),
     COMBO(colon_combo, LT(_SYM, KC_TAB)),
     COMBO(quot_combo, LT(_SYM, KC_QUOT)),
     // COMBO(tab_combo, LT(_SYM, KC_TAB)),
