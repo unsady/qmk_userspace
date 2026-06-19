@@ -235,7 +235,7 @@ const uint16_t PROGMEM num_zero_combo[]  = {NAV, KC_J, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(esc_combo, KC_ESC),
-    COMBO(sym_combo, MO(_SYM)),
+    COMBO(sym_combo, LT(_SYM, KC_ESC)),
     COMBO(colon_combo, LT(_SYM, KC_TAB)),
     COMBO(quot_combo, LT(_SYM, KC_QUOT)),
     // COMBO(tab_combo, LT(_SYM, KC_TAB)),
